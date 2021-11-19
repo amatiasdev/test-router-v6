@@ -1,6 +1,6 @@
 import './App.css';
 import './styles.css'
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import InfoCity from './Components/InfoCity/InfoCity';
 import Table from './Components/Table/Table';
 import axios from 'axios';
@@ -30,13 +30,13 @@ function App() {
     //ERROR 500 >
     //ERROR 404 >
 
-    axios.put("https://api.datos.gob.mx/v1/condiciones-atmosfericas", {name:"Aldo"});
+    /* axios.put("https://api.datos.gob.mx/v1/condiciones-atmosfericas", {name:"Aldo"});
     axios.patch("https://api.datos.gob.mx/v1/condiciones-atmosfericas", {name:"Aldo"});
     axios.delete("https://api.datos.gob.mx/v1/condiciones-atmosfericas/234");
-
+ */
     
 
-    axios.post("https://api.datos.gob.mx/v1/condiciones-atmosfericas", {id:"234567ygdf", name:"Aldo"}).then(res => {
+    axios.post("https://api.datos.gob.mx/v1/condiciones-atmosfericas",/*  {id:"234567ygdf", name:"Aldo"} */).then(res => {
       setData(res.data.results);
     }).catch(err => {
       console.log(err);
