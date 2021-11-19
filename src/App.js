@@ -24,11 +24,19 @@ function App() {
   //FET
 }*/
 
-    localStorage.setItem('tokenUser', 'Bearer kdashfbkldnfaslfjdsnks.d');
+    localStorage.setItem('token', 'Bearer kdashfbkldnfaslfjdsnks.d');
+    
 
-    /* axios.put("https://api.datos.gob.mx/v1/condiciones-atmosfericas", {name:"Aldo"}) */
+    //ERROR 500 >
+    //ERROR 404 >
 
-    axios.get("https://api.datos.gob.mx/v1/condiciones-atmosfericas",/*  {id:"234567ygdf", name:"Aldo"} */).then(res => {
+    axios.put("https://api.datos.gob.mx/v1/condiciones-atmosfericas", {name:"Aldo"});
+    axios.patch("https://api.datos.gob.mx/v1/condiciones-atmosfericas", {name:"Aldo"});
+    axios.delete("https://api.datos.gob.mx/v1/condiciones-atmosfericas/234");
+
+    
+
+    axios.post("https://api.datos.gob.mx/v1/condiciones-atmosfericas", {id:"234567ygdf", name:"Aldo"}).then(res => {
       setData(res.data.results);
     }).catch(err => {
       console.log(err);

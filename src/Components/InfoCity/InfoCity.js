@@ -42,7 +42,7 @@ function InfoCity({
                 </div>
 
                 <div className="container-data">
-                     <label><strong>Lastreporttime: </strong> {moment(elementSelect.lastreporttime).format("YYYY-MM-DD")}</label>
+                     <label><strong>Lastreporttime: </strong> {moment(elementSelect.lastreporttime).format("YYYY-MM-DD hh:smm:ss")}</label>
                      <label><strong>Sky description long: </strong> {elementSelect.skydescriptionlong}</label>
                 </div>
                 <div className="container-data">
