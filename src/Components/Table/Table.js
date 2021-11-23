@@ -49,7 +49,7 @@ export default function Table({
             <div className="row">
                 <div className="buttons-pagination">
                     <div>
-                        <button onClick={handlePrevPage}>Prev Page</button>
+                        <button onClick={handlePrevPage}>Previous Page</button>
                     </div>
                     <div>
                         <button onClick={handleNextPage}>Next Page</button>
