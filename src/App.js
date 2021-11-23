@@ -41,14 +41,16 @@ function App() {
        console.log(res?.datassss || "SIN INFO");
       if(Array.isArray(res.data.results)){
         console.log(res.data.results);
-        setData(res.data.results.map((item, index) => {
+
+        const data = res.data.results.map((item, index) => {
           return {
             ...item,
             index,
             claseOscar: "22-NOV-2021",
             id: Math.random()
           }
-        }));
+        });
+        setData(data);
       }else{
         setData([]);
       }
@@ -67,7 +69,7 @@ function App() {
           elementSelect ?
             <InfoCity elementSelect={elementSelect} setElementSelect={setElementSelect} />
             :
-            <Table data={data} setElementSelect={setElementSelect} />
+            <Table data={data} setElementSelect={setElementSelect} setData={setData}/>
         }
 
       </div>

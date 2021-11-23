@@ -3,7 +3,8 @@ import moment from 'moment';
 
 export default function Table({
     data,
-    setElementSelect
+    setElementSelect,
+    setData
 }) {
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -31,6 +32,16 @@ export default function Table({
         console.log(element);
         setElementSelect(element);
     }
+
+    const handleDelete = (city) => {
+        setData(prevState => prevState.filter(item => {
+            console.log(item.name);
+            console.log(+item.relativehumidity);
+            console.log(+item.relativehumidity>80 && +item.relativehumidity <90);
+            return !(+item.relativehumidity > 80 && parseInt(item.relativehumidity) <90);
+        }));
+    }
+    
     
     return (
         <>
@@ -56,11 +67,12 @@ export default function Table({
                                 <th>Humedad Relativa</th>
                                 <th>Ultimo Reporte</th>
                                 <th>LLUEVE</th>
+                                <th>ELIMINAR</th>
                             </tr>
                         </thead>
                         <tbody>
                             {dataFilter.map(item => (
-                                <tr key={item.id} onClick={e=>{handleSelectCity(item)}}>
+                                <tr key={item.id}>
                                     <td>{item._id}</td>
                                     <td>{item.cityid}</td>
                                     <td>{item.name}</td>
@@ -69,6 +81,7 @@ export default function Table({
                                     <td>{item.relativehumidity}</td>
                                     <td>{moment(item.lastreporttime).format("YYYY-MM-DD")}</td>
                                     <td>{`${item.probabilityofprecip > 60 || item.relativehumidity > 50 ? "SI" : "NO"}`}</td>
+                                    <td><button onClick={e=>handleDelete(item)}>Delete</button></td>
                                 </tr>
                             ))}
                         </tbody>
