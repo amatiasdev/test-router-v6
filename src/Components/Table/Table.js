@@ -34,12 +34,7 @@ export default function Table({
     }
 
     const handleDelete = (city) => {
-        setData(prevState => prevState.filter(item => {
-            console.log(item.name);
-            console.log(+item.relativehumidity);
-            console.log(+item.relativehumidity>80 && +item.relativehumidity <90);
-            return !(+item.relativehumidity > 80 && parseInt(item.relativehumidity) <90);
-        }));
+        setData(prevState => prevState.filter(item => !(+item.relativehumidity > 80 && parseInt(item.relativehumidity) <90)));
     }
     
     
