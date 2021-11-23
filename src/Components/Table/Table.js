@@ -9,7 +9,7 @@ export default function Table({
     const [currentPage, setCurrentPage] = useState(1);
 
     const dataFilter = useMemo(() => {
-        const newData = data.filter((item, index) => index < currentPage * 10 && index >= (currentPage - 1) * 10);
+        const newData =  data.length > 0 ? data.filter((item, index) => index < currentPage * 10 && index >= (currentPage - 1) * 10) :[];
         return newData;
     }, [data, currentPage]);
 

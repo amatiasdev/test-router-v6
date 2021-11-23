@@ -36,14 +36,29 @@ function App() {
  */
     
 
-    axios.post("https://api.datos.gob.mx/v1/condiciones-atmosfericas",/*  {id:"234567ygdf", name:"Aldo"} */).then(res => {
-      setData(res.data.results);
+    axios.get("https://api.datos.gob.mx/v1/condiciones-atmosfericas",/*  {id:"234567ygdf", name:"Aldo"} */).then(res => {
+       console.log(res);
+       console.log(res?.datassss || "SIN INFO");
+      if(Array.isArray(res.data.results)){
+        console.log(res.data.results);
+        setData(res.data.results.map((item, index) => {
+          return {
+            ...item,
+            index,
+            claseOscar: "22-NOV-2021",
+            id: Math.random()
+          }
+        }));
+      }else{
+        setData([]);
+      }
     }).catch(err => {
       console.log(err);
     })
 
   }, []);
 
+  console.log(data);
 
   return (
     <div>
