@@ -10,7 +10,7 @@ export default function Table({
     const [currentPage, setCurrentPage] = useState(1);
 
     const dataFilter = useMemo(() => {
-        const newData =  data.length > 0 ? data.filter((item, index) => index < currentPage * 10 && index >= (currentPage - 1) * 10) :[];
+        const newData =  data.filter((item, index) => index < currentPage * 10 && index >= (currentPage - 1) * 10) ;
         return newData;
     }, [data, currentPage]);
 
@@ -28,12 +28,73 @@ export default function Table({
         }
     }
 
-    const handleSelectCity = (element) => {
-        console.log(element);
-        setElementSelect(element);
+    const getItem = (item)=>{
+        return data.find(element => +element.id===item.id)?.pepe;
     }
 
+    const getIndexCity = ()=>{
+        return data.findIndex(element => element.cityid==="MXAS0175");
+    }
+
+    let clicked = [];
+
+    const addSameCity = (item)=>{
+        clicked.push(item);
+    }
+    
+    
+
+    const handleSelectCity = (element) => {
+        var nombre = "Juan";
+        //const nombre =  "Aldo";
+
+        console.log(nombre);
+        //console.log(item);
+
+
+        const indexCity = getIndexCity();
+        //console.log(indexCity);
+        if(indexCity>=0){
+            console.log("CONGRATULATIONS!");
+        }
+
+        const filterM = clicked.filter(item => item.cityid === element.cityid);//RETORNA UN ARRAY CON LOS ELEMENTOS QUE COINCIDEN CON LA CIUDAD, RETORNA UN ARRAY VACIO SI NO ENCUENTRA NADA
+        const findM= clicked.find(item => item.cityid === element.cityid);//RETORNA UN OBJETO ELEMENTO QUE COINCIDEN CON LA CIUDAD, RETORNA UNDEFINED SI NO ENCUENTRA NADA
+        const findIndexM= clicked.findIndex(item => item.cityid === element.cityid);//RETORNA UN NUMERO QUE COINCIDEN CON LA CIUDAD, RETORNA -1 SI NO ENCUENTRA NADA
+
+        /* console.log(filterM);
+        console.log(filterM.id); *///ACCEDIENDO A UNA PROPIEDAD DE UN OBJETO
+        /* if(filterM.length===0){ //FILTER
+            addSameCity(element);
+        }else{
+            console.log("YA EXISTE");
+        } */
+
+        /* console.log(findM);
+        console.log(findM);
+
+        if(!findM){ //FIND       {}= A TRUE PARA EL IF 
+            addSameCity(element);
+        }else{ //UNDEFINED FALSE PARA EL IF
+            console.log("YA EXISTE");
+        } */
+
+        if(findIndexM===-1){ //FINDINDEX       {}= A TRUE PARA EL IF 
+            addSameCity(element);
+        }else{ //UNDEFINED FALSE PARA EL IF
+            console.log("YA EXISTE");
+        }
+
+        console.log(clicked);
+        
+        //setElementSelect(element);
+    }
+    console.log(clicked);
+    var nombre="Oscar";
+    console.log(nombre);
+
     const handleDelete = (city) => {
+        const item = {};
         setData(prevState => prevState.filter(item => !(+item.relativehumidity > 80 && parseInt(item.relativehumidity) <90)));
     }
     
@@ -69,7 +130,7 @@ export default function Table({
                             {dataFilter.map(item => (
                                 <tr key={item.id}>
                                     <td>{item._id}</td>
-                                    <td>{item.cityid}</td>
+                                    <td onClick={e=>{handleSelectCity(item)}}>{item.cityid}</td>
                                     <td>{item.name}</td>
                                     <td>{item.state}</td>
                                     <td>{item.probabilityofprecip}</td>
