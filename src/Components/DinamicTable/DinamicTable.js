@@ -78,7 +78,7 @@ const DinamicTable = (
     
     const replicateData = (columna) => {
         setPuestos(puestos.map(item => {
-            return {...item, [columna.id]: puestos[0][columna.id] };
+            return {...item, [columna.id]: puestos[0][columna.id] };//aqui tengo duda we :(
             
         }));
     }
