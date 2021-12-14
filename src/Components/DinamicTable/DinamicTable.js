@@ -84,7 +84,7 @@ const DinamicTable = (
     }
     
     const replicateData = (columna) => {
-        //aqui tengo duda we :(
+        //aqui ya no tengo duda we :P
         setPuestos(
             puestos.map(
                 item => {
