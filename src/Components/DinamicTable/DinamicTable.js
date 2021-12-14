@@ -148,7 +148,7 @@ const DinamicTable = (
                                     {
                                         columnas.map((columna, index) => (
 
-                                            <td className="MuiTableCell-root" >
+                                            <td className="MuiTableCell-root other-class" >
                                                 {
                                                     index < 2 ?
                                                         puesto[columna.id] || ""
