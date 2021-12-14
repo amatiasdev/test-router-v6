@@ -5,6 +5,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import '../../../../../../Components/Usuarios/Usuario/DataTableService/StyleDataTable.css';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Tooltip from '@material-ui/core/Tooltip';
+import {  Delete } from '@material-ui/icons';
 
 const DinamicTable = (
 
@@ -68,18 +69,29 @@ const DinamicTable = (
 
     const handleValuePuesto = (e, element, columna) => {
         
-        setPuestos(puestos.map(item => {
-            if (item.id === element.id) {
-                return {...element, [columna.id]: e.target.value };
-            }
+        setPuestos(
+            puestos.map(item => {
+                if (item.id === element.id) {
+
+                    return {
+                        ...item,
+                        [columna.id]: e.target.value // 56
+                    };
+
+                }
             return item;
         }));
     }
     
     const replicateData = (columna) => {
-        setPuestos(puestos.map(item => {
-            return {...item, [columna.id]: puestos[0][columna.id] };//aqui tengo duda we :(
-            
+        //aqui tengo duda we :(
+        setPuestos(
+            puestos.map(
+                item => {
+                return {
+                    ...item, 
+                    [columna.id]: puestos[0][columna.id]
+                };            
         }));
     }
     
@@ -92,7 +104,22 @@ const DinamicTable = (
         }
     }
     
+    const handelDeleteColumn = (columna) => {
+        setColumnas(prevState=>prevState.filter(item=>item.id !== columna.id));
+        setPuestos(prevState=>{
+            return prevState.map(item=>{
+                delete item[columna.id];
+                return item;
+            })
+        });
+        percepciones.push(columna);
+        /* setPercepciones(
+            prevState => [...prevState, columna]
+        ); */
+    }
+    
 
+    console.log(percepciones);
 
     console.log(puestos)
     const Table = () => (
@@ -101,9 +128,13 @@ const DinamicTable = (
                 <thead className="MuiTableHead-root">
                     <tr className="MuiTableRow-root MuiTableRow-head">
                         {
-                            columnas.map(columna => (
+                            columnas.map((columna, index ) => (
                                 <th className="MuiTableCell-root MuiTableCell-head" key={columna?.id}>
                                     {columna?.nombre || "Sin nombre"}
+                                    {
+                                        index > 1 &&
+                                        <IconButton  onClick={e =>{ handelDeleteColumn(columna)} }><Delete fontSize="small"/></IconButton>
+                                    }
                                 </th>
                             ))
                         }
